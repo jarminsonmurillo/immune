@@ -1,4 +1,13 @@
 terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 6.0.0"
+    }
+  }
+}
+
+terraform {
   backend "s3" {
     bucket         = "immune-g2-s3-01"
     key            = "terraform/state/production/terraform.tfstate"
