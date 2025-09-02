@@ -17,7 +17,7 @@ resource "aws_autoscaling_group" "immune-g2-web-asg-01" {
   min_size             = 2
   max_size             = 2
   desired_capacity     = 2
-  vpc_zone_identifier  = [
+  vpc_zone_identifier = [
     aws_subnet.immune-g2-private-web-subnet-01.id,
     aws_subnet.immune-g2-private-web-subnet-02.id
   ]
@@ -41,7 +41,7 @@ resource "aws_autoscaling_group" "immune-g2-app-asg-01" {
   min_size             = 2
   max_size             = 2
   desired_capacity     = 2
-  vpc_zone_identifier  = [
+  vpc_zone_identifier = [
     aws_subnet.immune-g2-private-app-subnet-01.id,
     aws_subnet.immune-g2-private-app-subnet-02.id
   ]
