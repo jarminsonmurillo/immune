@@ -1,5 +1,5 @@
 resource "aws_db_instance" "immune-g2-rds-primary-01" {
-  identifier = "immune-g2-rds-primary-01"
+  identifier        = "immune-g2-rds-primary-01"
   allocated_storage = 20
   engine            = "sqlserver-ex"
   engine_version    = "15.00" # Replace with the latest version if needed

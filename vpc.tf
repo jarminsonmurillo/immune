@@ -35,18 +35,20 @@ resource "aws_subnet" "immune-g2-public-subnet-02" {
 }
 
 resource "aws_subnet" "immune-g2-private-web-subnet-01" {
-  vpc_id            = aws_vpc.immune-g2-vpc-01.id
-  cidr_block        = "10.0.2.0/24"
-  availability_zone = "us-east-1a"
+  vpc_id                  = aws_vpc.immune-g2-vpc-01.id
+  cidr_block              = "10.0.2.0/24"
+  availability_zone       = "us-east-1a"
+  map_public_ip_on_launch = true
   tags = {
     "Name" = "immune-g2-private-web-subnet-01"
   }
 }
 
 resource "aws_subnet" "immune-g2-private-web-subnet-02" {
-  vpc_id            = aws_vpc.immune-g2-vpc-01.id
-  cidr_block        = "10.0.20.0/24"
-  availability_zone = "us-east-1b"
+  vpc_id                  = aws_vpc.immune-g2-vpc-01.id
+  cidr_block              = "10.0.20.0/24"
+  availability_zone       = "us-east-1b"
+  map_public_ip_on_launch = true
   tags = {
     "Name" = "immune-g2-private-web-subnet-02"
   }
@@ -100,6 +102,13 @@ resource "aws_security_group" "immune-g2-web-sg-01" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
@@ -121,6 +130,16 @@ resource "aws_security_group" "immune-g2-app-sg-01" {
     to_port         = 80
     protocol        = "tcp"
     security_groups = [aws_security_group.immune-g2-web-sg-01.id]
+  }
+
+  ingress {
+    from_port = 22
+    to_port   = 22
+    protocol  = "tcp"
+    cidr_blocks = [
+      "10.0.2.0/24", # Private Web Subnet 01
+      "10.0.20.0/24" # Private Web Subnet 02
+    ]
   }
 
   egress {
