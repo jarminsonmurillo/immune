@@ -41,9 +41,9 @@ resource "aws_security_group" "immune-g2-internal-lb-sg" {
 
   # Permitir tráfico HTTP (puerto 80) desde las subnets privadas
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
+    from_port = 80
+    to_port   = 80
+    protocol  = "tcp"
     cidr_blocks = [
       "10.0.2.0/24", # Private Web Subnet 01
       "10.0.20.0/24" # Private Web Subnet 02
@@ -52,9 +52,9 @@ resource "aws_security_group" "immune-g2-internal-lb-sg" {
 
   # Permitir tráfico HTTPS (puerto 443) desde las subnets privadas
   ingress {
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
+    from_port = 443
+    to_port   = 443
+    protocol  = "tcp"
     cidr_blocks = [
       "10.0.2.0/24", # Private Web Subnet 01
       "10.0.20.0/24" # Private Web Subnet 02

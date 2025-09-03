@@ -8,7 +8,7 @@ resource "aws_lb" "immune-g2-alb-external-01" {
     aws_subnet.immune-g2-public-subnet-02.id
   ]
   tags = {
-    name = "immune-g2-alb-external-01"
+    Name = "immune-g2-alb-external-01"
   }
 }
 
@@ -38,7 +38,7 @@ resource "aws_lb" "immune-g2-alb-internal-01" {
     aws_subnet.immune-g2-private-app-subnet-02.id
   ]
   tags = {
-    name = "immune-g2-alb-internal-01"
+    Name = "immune-g2-alb-internal-01"
   }
 }
 

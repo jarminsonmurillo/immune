@@ -4,7 +4,7 @@ resource "aws_route_table" "immune-g2-private-route-table" {
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.immune-g2-nat-gateway-01.id
+    nat_gateway_id = aws_nat_gateway.immune-g2-nat-gateway-01.id
   }
 
   tags = {

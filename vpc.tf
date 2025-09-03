@@ -3,7 +3,7 @@ resource "aws_vpc" "immune-g2-vpc-01" {
   enable_dns_support   = true
   enable_dns_hostnames = true
   tags = {
-    "name" = "immune-g2-vpc-01"
+    "Name" = "immune-g2-vpc-01"
   }
 }
 
@@ -39,7 +39,7 @@ resource "aws_subnet" "immune-g2-private-web-subnet-01" {
   cidr_block        = "10.0.2.0/24"
   availability_zone = "us-east-1a"
   tags = {
-    "name" = "immune-g2-private-web-subnet-01"
+    "Name" = "immune-g2-private-web-subnet-01"
   }
 }
 
@@ -48,7 +48,7 @@ resource "aws_subnet" "immune-g2-private-web-subnet-02" {
   cidr_block        = "10.0.20.0/24"
   availability_zone = "us-east-1b"
   tags = {
-    "name" = "immune-g2-private-web-subnet-02"
+    "Name" = "immune-g2-private-web-subnet-02"
   }
 }
 
@@ -57,7 +57,7 @@ resource "aws_subnet" "immune-g2-private-app-subnet-01" {
   cidr_block        = "10.0.3.0/24"
   availability_zone = "us-east-1a"
   tags = {
-    "name" = "immune-g2-private-app-subnet-01"
+    "Name" = "immune-g2-private-app-subnet-01"
   }
 }
 
@@ -66,7 +66,7 @@ resource "aws_subnet" "immune-g2-private-app-subnet-02" {
   cidr_block        = "10.0.30.0/24"
   availability_zone = "us-east-1b"
   tags = {
-    "name" = "immune-g2-private-app-subnet-02"
+    "Name" = "immune-g2-private-app-subnet-02"
   }
 }
 
@@ -75,7 +75,7 @@ resource "aws_subnet" "immune-g2-private-db-subnet-01" {
   cidr_block        = "10.0.4.0/24"
   availability_zone = "us-east-1a"
   tags = {
-    "name" = "immune-g2-private-db-subnet-01"
+    "Name" = "immune-g2-private-db-subnet-01"
   }
 }
 
@@ -84,7 +84,7 @@ resource "aws_subnet" "immune-g2-private-db-subnet-02" {
   cidr_block        = "10.0.40.0/24"
   availability_zone = "us-east-1b"
   tags = {
-    "name" = "immune-g2-private-db-subnet-02"
+    "Name" = "immune-g2-private-db-subnet-02"
   }
 }
 
