@@ -9,15 +9,17 @@ terraform {
 
 terraform {
   backend "s3" {
-    bucket         = "immune-g2-s3-01"
-    key            = "terraform/state/production/terraform.tfstate"
-    region         = "us-east-1"
-    encrypt        = true
+    bucket  = "immune-g2-s3-01"
+    key     = "terraform/state/production/terraform.tfstate"
+    region  = "us-east-1"
+    encrypt = true
+    profile = "default"
   }
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region  = "us-east-1"
+  profile = "default"
   default_tags {
     tags = var.tags
   }
@@ -25,10 +27,10 @@ provider "aws" {
 
 variable "tags" {
   default = {
-    Region          = "us-east-1"
-    CostCenter      = "Tech"
-    ComplianceReq   = "True"
-    Environment     = "Testing"
+    Region        = "us-east-1"
+    CostCenter    = "Tech"
+    ComplianceReq = "True"
+    Environment   = "Testing"
   }
 }
 
