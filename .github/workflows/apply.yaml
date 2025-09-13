@@ -1,0 +1,48 @@
+name: Terraform Apply
+run-name: Terraform Plan for ${{ github.event.pull_request.head.ref }}
+
+on:  
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+    inputs:
+      destroy:
+        description: 'Run terraform destroy'
+        required: false
+        default: 'false'
+
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+  terraform-plan:
+    runs-on: ubuntu-latest
+    name: Terraform Plan
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Setup AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.REGION }}
+          
+      - name: Check Role
+        run: |
+          aws sts get-caller-identity 
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+        
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply --auto-approve
