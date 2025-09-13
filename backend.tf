@@ -13,7 +13,7 @@ terraform {
     key     = "terraform/state/production/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
-    profile = "default"
+    # profile = "default"
   }
 }
 
