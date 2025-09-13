@@ -7,7 +7,7 @@ module "openid_immune_g2" {
   policy_name      = "GitHub-Policy-Immune-G2"
   policy_path      = "/immune/"
   description      = "GitHub Actions Role for Capstone Project Immune G2"
-  sub_conditions   = ["repo:jarminsonmurillo/immune/*"]
+  sub_conditions   = ["repo:jarminsonmurillo/*"]
   policy_actions   = ["s3:ListAllMyBuckets", "s3:ListBucket"]
   policy_resources = ["*"]
 }
