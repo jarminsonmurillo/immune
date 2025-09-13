@@ -1,0 +1,50 @@
+name: Terraform Plan 
+run-name: Terraform Plan for ${{ github.event.pull_request.head.ref }}
+
+on:  
+  pull_request:
+    branches:
+      - main
+
+permissions:
+    id-token: write
+    contents: read
+
+jobs:
+  terraform-plan:
+    runs-on: ubuntu-latest
+    name: Terraform Plan
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform CLI
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Setup AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.IMMUNE_ROLE_ARN }}
+          role-session-name: TerraformSession
+          aws-region: ${{ secrets.REGION }}
+          
+      - name: Check Role
+        run: |
+          aws sts get-caller-identity 
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform fmt
+        id: fmt
+        run: terraform fmt
+
+      - name: Terraform validate
+        id: validate
+        run: terraform validate
+        
+      - name: Terraform Plan
+        id: plan
+        run: terraform plan

@@ -73,3 +73,28 @@ resource "aws_security_group" "immune-g2-internal-lb-sg" {
     Name = "immune-g2-internal-lb-sg"
   }
 }
+
+# Security Group for vpc endpoint
+resource "aws_security_group" "immune-g2-vpc-endpoint-sg" {
+  name        = "immune-g2-vpc-endpoint-sg"
+  description = "Security group for VPC endpoint"
+  vpc_id      = aws_vpc.immune-g2-vpc-01.id
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "immune-g2-vpc-endpoint-sg"
+  }
+}
