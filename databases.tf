@@ -24,20 +24,6 @@ resource "aws_db_instance" "immune-g2-rds-primary-01" {
   }
 }
 
-# resource "aws_db_instance" "immune-g2-rds-replica-01" {
-#   replicate_source_db = aws_db_instance.immune-g2-rds-primary-01.identifier
-#   identifier          = "immune-g2-rds-replica-01"
-#   instance_class      = "db.t3.micro"
-#   publicly_accessible = false
-#   skip_final_snapshot = "true"
-#   tags = {
-#     "Name" = "immune-g2-rds-replica-01"
-#   }
-#   depends_on = [ 
-#     aws_db_instance.immune-g2-rds-primary-01 
-#   ]
-# }
-
 resource "aws_db_subnet_group" "immune-g2-rds-subnet-group-01" {
   name = "immune-g2-rds-subnet-group-01"
   subnet_ids = [
